@@ -1,0 +1,80 @@
+﻿@model HealthCareSite.User
+
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{string x = Html.DisplayFor(model => model.Pic).ToString();}
+
+<h2 id="name">
+    
+    @Html.DisplayFor(model => model.Name))
+   
+</h2>
+<h2 id="pic" >
+    @Html.DisplayFor(model => model.Pic).ToString()
+</h2>
+
+<div class="chat-panel panel panel-default">
+    <div class="panel-heading">
+        SignalR Chatting Created By AhmedKhalil
+        <i class="fa fa-paper-plane fa-fw "></i>
+    </div>
+    <div class="panel-body" id="chat" style="height:500px;background-size:cover ;z-index:inherit; background-image:url(../../Uploads/83892_original_3264x2448.jpg)">
+        <input type="hidden" id="displayname" />
+        <p id="discussion"></p>
+    </div>
+
+    <div class="panel-footer ">
+        <div class="input-group">
+            <input id="message" type="text" name="message" class="form-control input-sm" placeholder="Type your Message Here .." />
+            <span class="input-group-btn ">
+                <input type="button" class="btn btn-warning btn-sm" style="width:100px ; height:100%" id="sendmessage" value="send" />
+            </span>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <!--  Using The SignalR library-->>
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function (name, message ,pic) {
+                // Add the message to the page.
+                if ($('#displayname').val() == name) {
+                    $('#discussion').append( '<img src=@Html.DisplayFor(model => model.Pic).ToString()  style="width:60px;height:60px; border-radius:30px 30px">' +'<span style="Background-color:#AAAAAA ; color:white;font-size:25px; " > " <strong> .' + htmlEncode(name)
+                        + '</strong>: ' + htmlEncode(message) + ' </span></br>');
+                }
+                else {
+                    $('#discussion').append('<div style=" text-align :right;"><img src="' + htmlEncode(pic) +  ' " style="width:60px;height:60px; border-radius:30px 30px"><span style="Background-color:#AAAAAA ; color:white;font-size:25px; " > " <strong> .' + htmlEncode(name)
+                        + '</strong>: ' + htmlEncode(message) + ' </div></br>');
+                }
+
+            };
+            // Get the user name and store it to prepend to messages.
+            // $('#displayname').val(prompt('Enter your name:', ''));
+            $('#pics').val(document.getElementById('pic').innerHtml);
+            $('#displayname').val(document.getElementById('name').innerHTML);
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.send($('#displayname').val(), $('#message').val(), document.getElementById('pic').innerText);
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+            });
+        });
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+}

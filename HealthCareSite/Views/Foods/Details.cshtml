@@ -1,0 +1,75 @@
+﻿@model HealthCareSite.Food
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Food</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutrients)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutrients)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vitamins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vitamins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body_match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body_match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disease_mat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disease_mat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pic)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Food_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

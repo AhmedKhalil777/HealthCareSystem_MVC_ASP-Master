@@ -1,0 +1,357 @@
+﻿@model HealthCareSite.User
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+}
+
+@{
+    string x = "http://localhost:60071/Users/Chat?id=" + Html.DisplayFor(model => model.User_ID).ToHtmlString();
+
+    float Height =float.Parse((Html.DisplayFor(model => model.Height).ToString()))/100 ;
+    float Weight = float.Parse((Html.DisplayFor(model => model.Weight).ToString()));
+    double Qetlet_Index = Weight / Math.Pow(Height,2);
+    string BudyShape;
+    float BloodPress = float.Parse((Html.DisplayFor(model => model.Blood_pressure).ToString()));
+    string PressAction;
+
+    if (Qetlet_Index >33)
+    {
+        BudyShape = "Grossly OBESE You Must Get A Doctor For Your Health ";
+    }
+    else if (Qetlet_Index >28.1)
+    {
+        BudyShape = "OBESE You Must take an Action To Get A Diet";
+    }
+    else if(Qetlet_Index>23)
+    {
+        BudyShape = "OverWeight You Must take an Action To Get A Diet";
+
+    }
+    else if(Qetlet_Index>18)
+    {
+        BudyShape = " Normal Keep Your Health in Your Mind";
+    }
+    else
+    {
+        BudyShape = "Thin , You seems to Need Feed";
+    }
+
+    if (BloodPress>120)
+    {
+        PressAction = "High Blood Pressure You Nedd Medical Support";
+    }
+    else if (BloodPress>80)
+    {
+        PressAction = "Normal Keep Your Health Up";
+    }
+    else 
+    {
+        PressAction = "Low Pressue You Need Medical Support";
+    }
+
+}
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar" >
+
+                <div class="container d-flex align-items-center" style="width:1200px">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                    </button>
+                    <p class="button-custom order-lg-last mb-0"><a href="appointment.html" class="btn btn-secondary py-2 px-3">Make An Appointment</a></p>
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active"><a href="index.html" class="nav-link pl-0">Home</a></li>
+                            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                            <li class="nav-item"><a href="doctor.html" class="nav-link">Doctor</a></li>
+                            <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
+                            <li class="nav-item"><a href="login.html" class="nav-link">login</a></li>
+                            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                            <li class="nav-item"><p class="button-custom order-lg-last mb-0"><a href="@x" class="btn btn-secondary py-2 px-3">free chat</a></p></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="home-slider owl-carousel" >
+                <div class="slider-item" style="background-image:url(../../images/bg_1.jpg);width:1200px" data-stellar-background-ratio="0.5" >
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+                            <div class="col-md-6 text ftco-animate">
+                                <h1 class="mb-4">
+                                    Giving You The Happiness             @Html.DisplayFor(model => model.Name)
+                                    <span>Stay Happy One</span>
+                                </h1>
+                                <h3 class="subheading">Everyday We Bring Hope and Smile to the Patient We Serve</h3>
+                                <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-item" style="background-image:url(../../images/bg_2.jpg);width:1200px">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+                            <div class="col-md-6 text ftco-animate">
+                                <h1 class="mb-4">We Care <span>About Your Health</span></h1>
+                                <h3 class="subheading">Your Health is Our Top Priority with Comprehensive, Affordable medical.</h3>
+                                <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" style="background-image:url('../../images/images (6).jpeg');height:70%;width:1200px" data-stellar-background-ratio="0.5">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+                            <div class="col-md-6 text ftco-animate">
+                                <h1 class="mb-4">
+                                    Your Blood Pressure     <div style="color:red">     @Html.DisplayFor(model => model.Blood_pressure) </div>
+                                    <span>@PressAction</span>
+                                </h1>
+                                <h3 class="subheading">Everyday We Bring Hope and Smile to the Patient We Serve</h3>
+                                <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" style="background-image:url('../../images/Does-Sugar-Cause-T2D-1440x810.jpg');width:1200px" data-stellar-background-ratio="0.5">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+                            <div class="col-md-6 text ftco-animate">
+                                <h1 class="mb-4">
+                                    Your Blood sugar     <div style="color:red">     @Html.DisplayFor(model => model.Blood_sugar) </div>
+                                    <span>Stay Happy One</span>
+                                </h1>
+                                <h3 class="subheading">Everyday We Bring Hope and Smile to the Patient We Serve</h3>
+                                <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ftco-services ftco-no-pb">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+                            <div class="media block-6 d-block text-center">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-doctor"></span>
+                                </div>
+                                <div class="media-body p-2 mt-3">
+                                    <h3 class="heading">Qualitfied Doctors</h3>
+                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+                            <div class="media block-6 d-block text-center">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-ambulance"></span>
+                                </div>
+                                <div class="media-body p-2 mt-3">
+                                    <h3 class="heading">Emergency Care</h3>
+                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+                            <div class="media block-6 d-block text-center">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-stethoscope"></span>
+                                </div>
+                                <div class="media-body p-2 mt-3">
+                                    <h3 class="heading">Outdoor Checkup</h3>
+                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+                            <div class="media block-6 d-block text-center">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-24-hours"></span>
+                                </div>
+                                <div class="media-body p-2 mt-3">
+                                    <h3 class="heading">24 Hours Service</h3>
+                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ftco-section ftco-no-pt ftc-no-pb">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 p-md-5 img img-2 mt-5 mt-md-0" style="background-image: url( @Html.DisplayFor(model => model.Pic));">
+                        </div>
+                        <div class="col-md-7 wrap-about py-4 py-md-5 ftco-animate">
+                            <div class="heading-section mb-5">
+                                <div class="pl-md-5 ml-md-5">
+                                    <h2 class="mb-4" style="font-size: 28px;">Hello @Html.DisplayFor(model => model.Name)  Your Health Information</h2>
+                                </div>
+                            </div>
+                            <div class="pl-md-5 ml-md-5 mb-5">
+                                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word.</p>
+                                <div class="row mt-5 pt-2">
+                                    <div class="col-lg-6">
+                                        <div class="services-2 d-flex">
+                                            <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-first-aid-kit"></span></div>
+                                            <div class="text">
+                                                <h3>Height</h3>
+                                                <p>@Html.DisplayFor(model => model.Height)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="services-2 d-flex">
+                                            <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-dropper"></span></div>
+                                            <div class="text">
+                                                <h3>Weight</h3>
+                                                <p>@Html.DisplayFor(model => model.Weight)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="services-2 d-flex">
+                                            <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-experiment-results"></span></div>
+                                            <div class="text">
+                                                <h3>Blood Sugar</h3>
+                                                <p>@Html.DisplayFor(model => model.Blood_sugar)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="services-2 d-flex">
+                                            <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-heart-rate"></span></div>
+                                            <div class="text">
+                                                <h3>Blood Pressure</h3>
+                                                <p>@Html.DisplayFor(model => model.Blood_pressure)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ftco-intro" style="background-image: url(../../images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2>Your Quetelet index = @Qetlet_Index</h2>
+                            <p class="mb-0">Your Health is Our Top Priority </p>
+                            <p>You are @BudyShape</p>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-center">
+                            <p class="mb-0"><a href="#" class="btn btn-secondary px-4 py-3">Free Consultation</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="ftco-section ftco-no-pt">
+                <div class="container">
+                    <div class="row justify-content-center mb-5 pb-2">
+                        <div class="col-md-8 text-center heading-section ftco-animate">
+                            <span class="subheading">Doctors</span>
+                            <h2 class="mb-4">Our Qualified Doctors</h2>
+                            <p>Doctors Can Help You To Get Healthy</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="staff">
+                                <div class="img-wrap d-flex align-items-stretch">
+                                    <div class="img align-self-stretch" style="background-image: url(../../images/doc-1.jpg);"></div>
+                                </div>
+                                <div class="text pt-3 text-center">
+                                    <h3>Dr. Lloyd Wilson</h3>
+                                    <span class="position mb-2">Neurologist</span>
+                                    <div class="faded">
+                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                                        <ul class="ftco-social text-center">
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="staff">
+                                <div class="img-wrap d-flex align-items-stretch">
+                                    <div class="img align-self-stretch" style="background-image: url(../../images/doc-2.jpg);"></div>
+                                </div>
+                                <div class="text pt-3 text-center">
+                                    <h3>Dr. Rachel Parker</h3>
+                                    <span class="position mb-2">Ophthalmologist</span>
+                                    <div class="faded">
+                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                                        <ul class="ftco-social text-center">
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="staff">
+                                <div class="img-wrap d-flex align-items-stretch">
+                                    <div class="img align-self-stretch" style="background-image: url(../../images/doc-3.jpg);"></div>
+                                </div>
+                                <div class="text pt-3 text-center">
+                                    <h3>Dr. Ian Smith</h3>
+                                    <span class="position mb-2">Dentist</span>
+                                    <div class="faded">
+                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                                        <ul class="ftco-social text-center">
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="staff">
+                                <div class="img-wrap d-flex align-items-stretch">
+                                    <div class="img align-self-stretch" style="background-image: url(../../images/doc-4.jpg);"></div>
+                                </div>
+                                <div class="text pt-3 text-center">
+                                    <h3>Dr. Alicia Henderson</h3>
+                                    <span class="position mb-2">Pediatrician</span>
+                                    <div class="faded">
+                                        <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                                        <ul class="ftco-social text-center">
+                                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+      
+
