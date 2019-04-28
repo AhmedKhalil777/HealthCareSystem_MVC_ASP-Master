@@ -14,7 +14,7 @@
 | :-------------: | :-------------: |:----------:|
 |E-Business (SOA) | DR Haithem El Ghareep | [ASP MVC5 (SOA) BASED](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/E-Business%20Documentation/E-Business%20Documentation.ipynb) |
 |System Design  | DR Samir Abd El Razik| DB DESIGN , System Design |
-|Network Programming |DR Sara Shaker | Chatting Room Signalr |
+|Network Programming |DR Sara Shaker | [Chatting Room Signalr](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/Network%20Programming%20Documentation/ChattingRoom%20Documentation.ipynb) |
 | HCI |Dr Mohammad Seiam | Contextual inquiry + Low Fadility +Requirement Analysis |
 | Intelligent IS | DR Reiham Reda | ALPHA BETA Pruning Checkers Game |
 
