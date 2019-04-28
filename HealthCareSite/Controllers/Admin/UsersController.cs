@@ -27,6 +27,21 @@ namespace HealthCareSite.Controllers
             return View(db.Users.ToList());
         }
 
+
+
+        public ActionResult Game(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {

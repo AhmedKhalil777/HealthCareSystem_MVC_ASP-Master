@@ -352,6 +352,8 @@
     <Content Include="css\bootstrap\.DS_Store" />
     <Content Include="css\css\.DS_Store" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\checkers-engine.js" />
+    <Content Include="Scripts\d3.v4.min.js" />
     <Content Include="Scripts\google-map.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -564,6 +566,7 @@
     <Content Include="Views\Shared\fonts\open-iconic\open-iconic.ttf" />
     <Content Include="Views\Shared\fonts\open-iconic\open-iconic.woff" />
     <Content Include="Views\Users\Home.cshtml" />
+    <Content Include="Views\Users\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
