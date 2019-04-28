@@ -8,3 +8,27 @@
 |Ahmed Abu Zahra | sec(1) | Designer +Analyst |
 | Islam Awad | Sec(2) | Database Analyst& Designer |
 | Mohammad Antar | Sec(4) | Database Analyst |
+
+## Documentation
+| Course | Doctor |  Documentation |
+| :-------------: | :-------------: |:----------:|
+|E-Business (SOA) | DR Haithem El Ghareep | ASP MVC5 (SOA) BASED |
+|System Design  | DR Samir Abd El Razik| DB DESIGN , System Design |
+|Network Programming |DR Sara Shaker | Chatting Room Signalr |
+| HCI |Dr Mohammad Seiam | Contextual inquiry + Low Fadility +Requirement Analysis |
+| Intelligent IS | DR Reiham Reda | ALPHA BETA Pruning Checkers Game |
+
+
+ ---
+ ## The Home Page of The User
+ - ![](PIC/1.PNG)
+ - ![](PIC/2.PNG)
+ - ![](PIC/3.PNG)
+ ---
+ ##  Chatting Room Using Signalr Technology
+ - ![](PIC/4.PNG)
+ ---
+ ## AI Game ALPHA BETA pruning --> Checkers
+ - ![](PIC/5.PNG)
+ ## Admin Pages To Modify The Hole Data and Do CRUD Operations
+ - ![](PIC/6.PNG)
