@@ -30,5 +30,5 @@
  ---
  ## AI Game ALPHA BETA pruning --> Checkers
  - ![](PIC/5.PNG)
- ## Admin Pages To Modify The Hole Data and Do CRUD Operations
+ ## Admin Pages To Modify The whole Data and Do CRUD Operations
  - ![](PIC/6.PNG)
