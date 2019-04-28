@@ -16,7 +16,7 @@
 |System Design  | DR Samir Abd El Razik| [DB DESIGN , System Design](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/System%20Design%20Documentation/System%20Design.ipynb) |
 |Network Programming |DR Sara Shaker | [Chatting Room Signalr](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/Network%20Programming%20Documentation/ChattingRoom%20Documentation.ipynb) |
 | HCI |Dr Mohammad Seiam | [Contextual inquiry + Low Fadility +Requirement Analysis](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/HCI/HCI.ipynb) |
-| Intelligent IS | DR Reiham Reda | ALPHA BETA Pruning Checkers Game |
+| Intelligent IS | DR Reiham Reda | [ALPHA BETA Pruning Checkers Game](https://github.com/AhmedKhalil777/HealthCareSystem_MVC_ASP-Master/blob/master/IIS%20Documentation/IIS.md) |
 
 
  ---
