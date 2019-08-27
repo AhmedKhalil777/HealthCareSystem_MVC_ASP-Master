@@ -1,4 +1,4 @@
-﻿@model HealthCareSite.User
+﻿@model HealthCareSite.Models.User
 
 @{
     ViewBag.Title = "Chat";
@@ -6,14 +6,15 @@
 }
 @{string x = Html.DisplayFor(model => model.Pic).ToString();}
 
-<h2 id="name">
+<h2 id="name" class="align-content-sm-around">
     
     @Html.DisplayFor(model => model.Name))
    
 </h2>
-<h2 id="pic" >
+<h2 id="pic" hidden="hidden" >
     @Html.DisplayFor(model => model.Pic).ToString()
 </h2>
+<img src="     @Html.DisplayFor(model => model.Pic).ToString()" class="img-circle img-responsive " style="width:30%"  />
 
 <div class="chat-panel panel panel-default">
     <div class="panel-heading">

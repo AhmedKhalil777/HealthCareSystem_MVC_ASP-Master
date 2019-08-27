@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HealthCareSite;
+using HealthCareSite.Models;
 
 namespace HealthCareSite.Controllers
 {
     public class UsersController : Controller
     {
+        // Dependancy Injection
         private health_care_systemEntities db = new health_care_systemEntities();
-         
+
+        #region Chat
         //Chatting Room For User
         [HttpGet]
         public ActionResult Chat(int? id)
@@ -21,14 +25,38 @@ namespace HealthCareSite.Controllers
             User user = db.Users.Find(id);
             return View(user);
         }
+        #endregion
+
+        #region Index
         // GET: Users
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
+        #endregion
 
+        #region Profile Manager
+        [HttpGet]
+        public ActionResult UserProfile(int id) => View(db.Users.Single(d => d.User_ID ==id));
+        [HttpPost]
+        public ActionResult UserProfile(User user)
+        {
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Home" , user.User_ID);
+        }
 
+ 
+        #endregion
 
+        #region Doctors_User Manager
+        public ActionResult Doctors()
+        {
+            return View(db.Doctors.ToList());
+        }
+        #endregion
+
+        #region Game
         public ActionResult Game(int? id)
         {
             if (id == null)
@@ -42,6 +70,9 @@ namespace HealthCareSite.Controllers
             }
             return View(user);
         }
+        #endregion
+
+        #region Details Admin
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
@@ -56,8 +87,9 @@ namespace HealthCareSite.Controllers
             }
             return View(user);
         }
+        #endregion
 
-
+        #region UI_Home
         public ActionResult Home(int? id)
         {
             if (id == null)
@@ -71,7 +103,9 @@ namespace HealthCareSite.Controllers
             }
             return View(user);
         }
+        #endregion
 
+        #region Create
 
         // GET: Users/Create
         public ActionResult Create()
@@ -95,7 +129,9 @@ namespace HealthCareSite.Controllers
 
             return View(user);
         }
+        #endregion
 
+        #region Edit
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -120,19 +156,15 @@ namespace HealthCareSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
         }
-
-       [HttpGet]
-        public ActionResult Login()
-        {
-
-            return View();
-        }
+        #endregion
+       
+        #region Login
 
         [HttpPost]
         public ActionResult Login( string name , string password)
@@ -141,10 +173,10 @@ namespace HealthCareSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(name);
+            var user = db.Users.Where(u => u.Name == name).FirstOrDefault();
             if (name == user.Name && password ==user.Password)
             {
-                return RedirectToAction("Index");
+                return Redirect("Home?id=" + user.User_ID);
             }
             else
             {
@@ -152,7 +184,9 @@ namespace HealthCareSite.Controllers
 
             }
         }
+        #endregion
 
+        #region Delete
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -178,6 +212,7 @@ namespace HealthCareSite.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    ViewBag.Button = "btn-info";
+
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -59,12 +63,12 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link pl-0">Home</a></li>
-                    <li class="nav-item "><a href="http://localhost:60071/Users" class="nav-link">Users</a></li>
-                    <li class="nav-item"><a href="http://localhost:60071/Doctors" class="nav-link">Doctor</a></li>
-                    <li class="nav-item"><a href="http://localhost:60071/Foods" class="nav-link">Food</a></li>
-                    <li class="nav-item"><a href="http://localhost:60071/Excercises" class="nav-link">Excercises</a></li>
-                    <li class="nav-item"><a href="http://localhost:60071/Drugs" class="nav-link">Drug</a></li>
-                    <li class="nav-item"><a href="http://localhost:60071/Groups" class="nav-link">Groups</a></li>
+                    <li class="nav-item ">@Html.ActionLink("User" , "Index" ,"Users" ,null , new { @class="btn " +ViewBag.Button+" "+ ViewBag.ButtonU , style="width:100px"} ) </li>
+                    <li class="nav-item">@Html.ActionLink("Doctor", "Index", "Doctors" ,null , new { @class="btn "+ViewBag.Button +" " +ViewBag.ButtonD, style="width:100px"} )</li>
+                    <li class="nav-item">@Html.ActionLink("Food", "Index", "Foods"  ,null , new { @class="btn " +ViewBag.Button+" "+ ViewBag.ButtonF, style="width:100px"})</li>
+                    <li class="nav-item">@Html.ActionLink("Excercise", "Index", "Excercises" ,null , new { @class="btn " +ViewBag.Button+" "+ ViewBag.ButtonE, style="width:100px"})</li>
+                    <li class="nav-item">@Html.ActionLink("Drug", "Index", "Drugs" ,null , new { @class="btn " +ViewBag.Button+" "+ ViewBag.ButtonDr, style="width:100px"})</li>
+                    <li class="nav-item">@Html.ActionLink("Group", "Index", "Groups" ,null , new { @class="btn " +ViewBag.Button+" "+ ViewBag.ButtonG , style="width:100px"})</li>
                 </ul>
             </div>
         </div>

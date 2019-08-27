@@ -1,8 +1,10 @@
-﻿@model IEnumerable<HealthCareSite.User>
+﻿@model IEnumerable<HealthCareSite.Models.User>
 
 @{
     ViewBag.Title = "Index";
+
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        ViewBag.ButtonU = "btn-warning";
 }
 
 <h2>Index</h2>
@@ -10,7 +12,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-responsive table-striped table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -74,8 +76,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.E_mail)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pic)
+        <td >
+           <img src= "@Html.DisplayFor(modelItem => item.Pic)" style="width:200px " class="img-rounded image-popup"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Blood_sugar)
@@ -96,9 +98,9 @@
             @Html.DisplayFor(modelItem => item.Disease)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.User_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.User_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.User_ID })
+            @Html.ActionLink(" Edit  ", "Edit", new { id=item.User_ID }  ,new {  @class= "btn btn-warning"})  |
+            @Html.ActionLink("Details", "Details", new { id=item.User_ID },new {  @class= "btn btn-info"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.User_ID },new {  @class= "btn btn-danger"})
         </td>
     </tr>
 }

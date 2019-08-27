@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HealthCareSite;
+using HealthCareSite.Models;
 
 namespace HealthCareSite.Controllers
 {
@@ -84,7 +84,7 @@ namespace HealthCareSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(doctor).State = EntityState.Modified;
+                db.Entry(doctor).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
