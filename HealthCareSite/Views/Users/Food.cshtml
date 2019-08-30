@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<HealthCareSite.Models.Food>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+    ViewBag.Title = "Food";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Food</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -59,11 +57,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Pic)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Food_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Food_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Food_ID })
-        </td>
+
     </tr>
 }
 

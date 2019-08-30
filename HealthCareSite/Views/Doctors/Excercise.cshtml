@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<HealthCareSite.Models.Exercise>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Excercise";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Excercise</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Exercises",null, new { @class = "btn btn-success" }) )
 </p>
 <table class="table">
     <tr>
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.Repeat)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Ex_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Ex_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Ex_ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Ex_ID }, new { @class = "btn btn-warning" }) ) |
+            @Html.ActionLink("Details", "Details", new { id = item.Ex_ID }, new { @class = "btn btn-info" }) ) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Ex_ID }, new { @class = "btn btn-danger" }) )
         </td>
     </tr>
 }

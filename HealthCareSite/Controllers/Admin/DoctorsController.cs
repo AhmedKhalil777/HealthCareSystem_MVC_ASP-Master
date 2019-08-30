@@ -12,7 +12,7 @@ namespace HealthCareSite.Controllers
 {
     public class DoctorsController : Controller
     {
-        private health_care_systemEntities db = new health_care_systemEntities();
+        private health_care_systemEntities1 db = new health_care_systemEntities1();
 
         // GET: Doctors
         [HttpGet]
@@ -21,7 +21,7 @@ namespace HealthCareSite.Controllers
 
             return View(db.Doctors.ToList());
         }
-       
+
         // GET: Doctors/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,6 +36,8 @@ namespace HealthCareSite.Controllers
             }
             return View(doctor);
         }
+
+
 
         // GET: Doctors/Create
         public ActionResult Create()
@@ -118,6 +120,50 @@ namespace HealthCareSite.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult DoctorProfile(int Id) => View(db.Doctors.Single(d => d.Doc_ID == Id));
+
+        [HttpPost]
+        public ActionResult Login(string Name, string Password)
+        {
+            if (Name == null || Password == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doc = db.Doctors.SingleOrDefault(n => n.Name == Name);
+            if (doc.Password == Password)
+            {
+                Cookie Doctor = new Cookie("DID", doc.Doc_ID.ToString());
+                Response.Cookies["DID"].Value = doc.Doc_ID.ToString();
+                Cookie DIMG = new Cookie("DIMG", doc.Doc_ID.ToString());
+                Response.Cookies["DIMG"].Value = doc.Pic.ToString();
+                return RedirectToAction("DoctorProfile", new { Id = doc.Doc_ID });
+
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+        }
+        [HttpGet]
+        public ActionResult Users(int Id){
+           var ud=  db.User_Doctor.Where(d => d.Doctor_Doc_ID == Id);
+            var users = new List<User>();
+            foreach (var item in ud)
+            {
+               users.Add( db.Users.Single(u => u.User_ID == item.User_User_ID));
+            }
+            return View(users);
+                
+                }
+        [HttpGet]
+        public ActionResult chat(int id) => View(db.Doctors.Single(d=> d.Doc_ID ==id));
+
+        [HttpGet]
+        public ActionResult Drug() { return View(db.Drugs.ToList()); }
+        [HttpGet]
+        public ActionResult Food() { return View(db.Foods.ToList()); }
+        [HttpGet]
+        public ActionResult Excercise() { return View(db.Exercises.ToList()); }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -3,154 +3,88 @@
 @{
 
     Layout = "~/Views/Shared/_UserMaster.cshtml";
-        ViewBag.Title = "Doctors";
+    ViewBag.Title = "Doctors";
 
 }
-<style>
-#team {
-    background: #eee !important;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    background-color: #108d6f;
-    border-color: #108d6f;
-    box-shadow: none;
-    outline: none;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
-}
-
-section {
-    padding: 60px 0;
-}
-
-section .section-title {
-    text-align: center;
-    color: #007b5e;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-}
-
-#team .card {
-    border: none;
-    background: #ffffff;
-}
-
-
-
-
-
-.mainflip {
-    -webkit-transition: 1s;
-    -webkit-transform-style: preserve-3d;
-    -ms-transition: 1s;
-    -moz-transition: 1s;
-    -moz-transform: perspective(1000px);
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    transition: 1s;
-    transform-style: preserve-3d;
-    position: relative;
-}
-
-.frontside {
-    position: relative;
-    -webkit-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    z-index: 2;
-    margin-bottom: 30px;
-}
-
-.backside {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: white;
-    -webkit-transform: rotateY(-180deg);
-    -moz-transform: rotateY(-180deg);
-    -o-transform: rotateY(-180deg);
-    -ms-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-}
-
-.frontside,
-
-
-.frontside .card,
-.backside .card {
-    min-height: 312px;
-}
-
-.backside .card a {
-    font-size: 18px;
-    color: #007b5e !important;
-}
-
-.frontside .card .card-title,
-.backside .card .card-title {
-    color: #007b5e !important;
-}
-
-.frontside .card .card-body img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-}
-</style>
+<link rel="stylesheet" href="/Content/Listing.css" />
 
 <div class="main">
-
-
-    <!-- Another variation with a button -->
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search For Doctor">
-        <div class="input-group-append">
-            <button class="btn btn-secondary" type="button" onclick="">
-                <i class="fa fa-search"></i>
-            </button>
+        <div class="container-fluid">
+            <div class="row">
+                @using (Html.BeginForm("Search", "Users"))
+                {
+                    <!-- Another variation with a button -->
+
+
+                    <div class=" col-md-7 input-group-append">
+                        <div class="container h-100">
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="searchbar">
+                                    <input class="search_input" type="text" name="Text" placeholder="Search...">
+                                    <input type="submit" value="" class="search_icon fas fa-search">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Default inline 1-->
+                    <div class="col-md-3 custom-control custom-radio custom-control-inline btn btn-dark" style="margin-top:15px; margin-left:30px; padding-top:10px;">
+                        <input type="radio" class="custom-control-input" id="defaultInline1" name="Type" value="N">
+                        <label class="custom-control-label" for="defaultInline1">Name</label>
+                    </div>
+
+
+                    <!-- Default inline 2-->
+                    <div class=" col-md-3 custom-control custom-radio custom-control-inline btn btn-dark " style="margin-top:15px; padding-top:10px;">
+                        <input type="radio" class="custom-control-input" id="defaultInline2" name="Type" value="S">
+                        <label class="custom-control-label" for="defaultInline2">Speciality</label>
+                    </div>
+
+
+
+
+
+
+                }
+                <div class="col-md-3">
+                    @Html.ActionLink("Connected Doctors", "Cdoc", new { Id = Request.Cookies["cookie"].Value }, new { @class = "btn btn-dark container-fluid" })
+                </div>
+            </div>
         </div>
     </div>
-
-
-</div>
     <section id="team" class="pb-5">
-        
-               
-                    <div class="container">
-                        <h5 class="section-title h1">Doctors</h5>
-                        <div class="row">
-                            @foreach (var item in Model)
-                            {
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                                        <div class="mainflip">
-                                            <div class="frontside">
-                                                <div class="card">
-                                                    <div class="card-body text-center">
-                                                        <p><img class=" img-fluid" src="@item.Pic" alt="card image"></p>
-                                                        <h4 class="card-title">@item.Name</h4>
-                                                        <p class="card-text">@item.Speciality</p>
-                                                        @Html.ActionLink("Edit", "Edit", "Doctors", new { id = item.Doc_ID },new { @class = "btn btn-warning btn-sm" })
-                                                        @Html.ActionLink("Delete", "Delete", "Doctors", new { id = item.Doc_ID }, new { @class = "btn btn-danger btn-sm" })
-                                                        @Html.ActionLink("Details", "Details", "Doctors", new { id = item.Doc_ID },new { @class = "btn btn-info btn-sm" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            
+
+
+        <div class="container">
+            <h5 class="section-title h1">Doctors</h5>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p>
+                                                <img class=" img-fluid" src="@item.Pic" alt="card image">
+                                            </p>
+                                            <h4 class="card-title">@item.Name</h4>
+                                            <p class="card-text">@item.Speciality</p>
+                                            @Html.ActionLink("Details", "Details", "Doctors", new { id = item.Doc_ID }, new { @class = "btn btn-info " })
+                                            @Html.ActionLink("Connect", "Connect", "Users", new { id = item.Doc_ID }, new { @class = "btn btn-success" })
                                         </div>
                                     </div>
                                 </div>
-                       
+
+
+                            </div>
+                        </div>
+                    </div>
+
                 }
-                </div>
             </div>
-        </section>
+        </div>
+    </section>

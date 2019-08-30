@@ -1,9 +1,7 @@
 ﻿@{ 
-    int userid;
-    int.TryParse(Request.Cookies["cookie"].Value ,out userid);
-    string img = Request.Cookies["pic"].Value;
-
-        }
+    int docId = int.Parse(Request.Cookies["DID"].Value);
+    string img = Request.Cookies["DIMG"].Value;
+}
 
 <!DOCTYPE html>
 <html>
@@ -11,86 +9,60 @@
     <meta charset="utf-8" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-
     <title>HealthCare</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
     <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/css/animate.css">
-
     <link rel="stylesheet" href="~/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="~/css/magnific-popup.css">
-
     <link rel="stylesheet" href="~/css/aos.css">
-
     <link rel="stylesheet" href="~/css/ionicons.min.css">
-
-
-
     <link rel="stylesheet" href="~/css/icomoon.css">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
     <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="~/css/jquery.timepicker.css">
-
 </head>
 <body>
-   
+
     <nav class="btn btn-dark navbar navbar-expand-lg navbar-dark nav-justified  " style="margin-top:0px; ">
         <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
             <div class="col-lg-2 pr-4 align-items-center">
-                <a class="navbar-brand" href="index.html">Health<span>.care</span></a>
+                <a class="navbar-brand" href="index.html"><span>Doctors.</span> Health<span>.care</span>
             </div>
 
-         </div>
+        </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555" style="font-size:15px">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active col-md-4">
-                    @Html.ActionLink("Home", "Home", null, new { Id = userid }, new { @class = "nav-link" })
+
+                <li class="nav-item col-md-4">
+                    @Html.ActionLink("Profile", "DoctorProfile", null, new { Id = docId }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item col-md-4">
-                    @Html.ActionLink("Profile", "UserProfile", null, new { Id = userid }, new { @class = "nav-link" })
+                    @Html.ActionLink("Users", "Users", null, new { Id = docId }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item col-md-4">
-                    @Html.ActionLink("Doctors", "Doctors", null, new { Id = userid }, new { @class = "nav-link" })
+                    @Html.ActionLink("Chat Room", "chat", null, new { Id = docId }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item col-md-4">
-                    @Html.ActionLink("Chat Room", "chat", null, new { Id = userid }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item col-md-4">
-                    @Html.ActionLink("Game", "Game", null, new { Id = userid }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item dropdown col-md-10">
-                    <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Health Life
-                    </a>
-                    <div class="dropdown-menu dropdown-secondary bg-dark" aria-labelledby="navbarDropdownMenuLink-555">
-                        @Html.ActionLink("Excercisies", "Excercise", "Users", new { Id = userid }, new { @class = "nav-link " })
-                        @Html.ActionLink("Foods", "Food", "Users", new { Id = userid }, new { @class = "nav-link" })
-                        @Html.ActionLink("Drugs", "Drug", "Users", new { Id = userid }, new { @class = "nav-link" })
-                    </div>
-                </li>
+                
+                
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons" style="float:right">
-             
+
                 <li class="nav-item avatar dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <img src="@img" style="width:10%" class="rounded-circle z-depth-0 float-lg-right"
                              alt="avatar image">
-                        
+
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                          aria-labelledby="navbarDropdownMenuLink-55">
-                        @Html.ActionLink("Profile", "UserProfile", null, new { Id = userid }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Logout" , "Login" , "Home" ,null , new { @class = "dropdown-item" } )
+                        @Html.ActionLink("Profile", "UserProfile", null, new { Id = docId }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Logout", "Login", "Home", null, new { @class = "dropdown-item" })
                     </div>
                 </li>
             </ul>

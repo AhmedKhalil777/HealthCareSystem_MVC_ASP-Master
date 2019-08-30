@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HealthCareSite.Models.Drug>
+
+@{
+    ViewBag.Title = "Drug";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+}
+
+<h2>Drug</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Side_effect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medical_u)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredient)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Side_effect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medical_u)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredient)
+            </td>
+
+        </tr>
+    }
+
+</table>

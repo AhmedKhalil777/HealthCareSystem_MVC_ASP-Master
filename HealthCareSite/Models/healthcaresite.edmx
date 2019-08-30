@@ -131,13 +131,13 @@
         </EntityType>
         <EntityType Name="User-Doctor">
           <Key>
-            <PropertyRef Name="User_Doctor_ID" />
+            <PropertyRef Name="User_User_ID" />
+            <PropertyRef Name="Doctor_Doc_ID" />
           </Key>
-          <Property Name="User_Doctor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Interact_des" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Interact_des" Type="nvarchar" MaxLength="1000" />
           <Property Name="User_User_ID" Type="int" Nullable="false" />
           <Property Name="Doctor_Doc_ID" Type="int" Nullable="false" />
-          <Property Name="Report" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Report" Type="nvarchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="User-Group">
           <Key>
@@ -486,13 +486,13 @@
         </EntityType>
         <EntityType Name="User_Doctor">
           <Key>
-            <PropertyRef Name="User_Doctor_ID" />
+            <PropertyRef Name="User_User_ID" />
+            <PropertyRef Name="Doctor_Doc_ID" />
           </Key>
-          <Property Name="User_Doctor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Interact_des" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Interact_des" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="User_User_ID" Type="Int32" Nullable="false" />
           <Property Name="Doctor_Doc_ID" Type="Int32" Nullable="false" />
-          <Property Name="Report" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Report" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_User_Doctor_Doctor" FromRole="User_Doctor" ToRole="Doctor" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Doctor_User" FromRole="User_Doctor" ToRole="User" />
         </EntityType>
@@ -638,7 +638,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="health_care_systemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="health_care_systemEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Doctors" EntityType="Self.Doctor" />
           <EntitySet Name="Drugs" EntityType="Self.Drug" />
           <EntitySet Name="Exercises" EntityType="Self.Exercise" />
@@ -701,7 +701,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="health_care_systemModelStoreContainer" CdmEntityContainer="health_care_systemEntities">
+        <EntityContainerMapping StorageEntityContainer="health_care_systemModelStoreContainer" CdmEntityContainer="health_care_systemEntities1">
           <EntitySetMapping Name="Doctors">
             <EntityTypeMapping TypeName="health_care_systemModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
@@ -839,7 +839,6 @@
           <EntitySetMapping Name="User_Doctor">
             <EntityTypeMapping TypeName="health_care_systemModel.User_Doctor">
               <MappingFragment StoreEntitySet="User-Doctor">
-                <ScalarProperty Name="User_Doctor_ID" ColumnName="User_Doctor_ID" />
                 <ScalarProperty Name="Interact_des" ColumnName="Interact_des" />
                 <ScalarProperty Name="User_User_ID" ColumnName="User_User_ID" />
                 <ScalarProperty Name="Doctor_Doc_ID" ColumnName="Doctor_Doc_ID" />

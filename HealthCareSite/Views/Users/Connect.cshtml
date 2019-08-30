@@ -1,0 +1,105 @@
+﻿@model HealthCareSite.Models.Doctor
+
+@{
+    ViewBag.Title = "Connect";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+}
+
+<h2>Connect</h2>
+
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+
+        <input type="text" style="visibility:hidden" name="DID" value="@Model.Doc_ID" />
+        <input type="text" style="visibility:hidden" name="SID" value="@Request.Cookies["cookie"].Value " />
+        <div class="container  btn btn-dark" style="position:center; margin:auto; font-size:15px">
+
+            <div class="row ">
+                <div class="active bg-dark" style="margin-left:auto; margin-right:auto"> @Html.DisplayFor(model => model.Name)</div>
+            </div>
+            <div style="margin-left:auto; margin-right:auto">
+                <div class="row">
+                    <div class="col-md">
+                        <img src="@Html.DisplayFor(model => model.Pic)" class="img img-circle img-responsive" style="width:20% ; margin:auto" />
+                    </div>
+                </div>
+                <br />
+                <div class="row ">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.E_mail)
+
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.E_mail)
+                    </div>
+
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.Gender)
+
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.Gender)
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.Evaluation)
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.Evaluation)
+                    </div>
+
+                </div><br />
+                <div class="row">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.Phone)
+                    </div>
+
+                </div><br />
+                <div class="row">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.Details)
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.Details)
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md">
+                        @Html.DisplayNameFor(model => model.Speciality)
+                    </div>
+                    <div class="col-md">
+                        @Html.DisplayFor(model => model.Speciality)
+                    </div>
+
+                </div>
+                <div class="row btn btn-success" style="width:20%">
+                    <input id="but" class="btn btn-success" type="submit" value="Connect" />
+                </div>
+            </div>
+
+
+
+
+        </div>
+    }
+</div>
+<script>
+    if (@ViewBag.Connect == "true") {
+        document.getElementById("but").style.visibility = "hidden";
+    }
+</script>

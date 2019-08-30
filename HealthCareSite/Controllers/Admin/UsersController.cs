@@ -15,7 +15,7 @@ namespace HealthCareSite.Controllers
     public class UsersController : Controller
     {
         // Dependancy Injection
-        private health_care_systemEntities db = new health_care_systemEntities();
+        private health_care_systemEntities1 db = new health_care_systemEntities1();
 
         #region Chat
         //Chatting Room For User
@@ -41,18 +41,44 @@ namespace HealthCareSite.Controllers
         [HttpPost]
         public ActionResult UserProfile(User user)
         {
-            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Home" , user.User_ID);
+            string filename = Path.GetFileNameWithoutExtension(user.Picfile.FileName);
+            string extension = Path.GetExtension(user.Picfile.FileName);
+            filename += DateTime.Now.ToString("yymmssfff") + extension;
+            user.Pic = "../../Uploads/" + filename;
+            filename = Path.Combine(Server.MapPath("~/Uploads/"), filename);
+            user.Picfile.SaveAs(filename);
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("UserProfile");
+
+            }
+
+            return View();
         }
 
  
         #endregion
 
         #region Doctors_User Manager
-        public ActionResult Doctors()
+        public ActionResult Doctors(int Id)
         {
-            return View(db.Doctors.ToList());
+            List<Doctor> doctors = db.Doctors.ToList();
+            List<Doctor> disdoctors = new List<Doctor>();
+            foreach (var item in db.User_Doctor.ToList())
+            {
+                if (item.User_User_ID == Id)
+                {
+                    disdoctors.Add(item.Doctor);
+                }
+            }
+            foreach (var item in disdoctors)
+            {
+                doctors.Remove(item);
+            }
+           
+            return View(doctors);
         }
         #endregion
 
@@ -163,12 +189,23 @@ namespace HealthCareSite.Controllers
             return View(user);
         }
         #endregion
-       
+
+    
+        [HttpPost]
+        public ActionResult Search(string Text, string Type)
+        {
+            if (Type == "N")
+            {
+                return View("Doctors",db.Doctors.Where(d => d.Name == Text).ToList());
+            }
+            return View("Doctors", db.Doctors.Where(d => d.Speciality == Text).ToList());
+        }
         #region Login
 
         [HttpPost]
         public ActionResult Login( string name , string password)
         {
+            
             if (name == null || password == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -176,6 +213,10 @@ namespace HealthCareSite.Controllers
             var user = db.Users.Where(u => u.Name == name).FirstOrDefault();
             if (name == user.Name && password ==user.Password)
             {
+                Cookie cookie = new Cookie("userid" ,user.User_ID.ToString());
+                Cookie pic = new Cookie("pic", user.Pic.ToString());
+                Response.Cookies["cookie"].Value = user.User_ID.ToString();
+                Response.Cookies["pic"].Value = user.Pic.ToString();
                 return Redirect("Home?id=" + user.User_ID);
             }
             else
@@ -186,6 +227,43 @@ namespace HealthCareSite.Controllers
         }
         #endregion
 
+        #region
+        [HttpGet]
+        public ActionResult Connect(int Id) {
+            foreach (var item in db.User_Doctor.ToList())
+            {
+                if (item.Doctor_Doc_ID ==Id)
+                {
+                    ViewBag.Connect = true;
+                }
+            }  
+
+           return View(db.Doctors.Single(d => d.Doc_ID == Id));
+        }
+       
+
+        [HttpPost]
+        public ActionResult Connect(string DID , string SID)
+        {
+
+            db.User_Doctor.Add(new User_Doctor { User_User_ID = int.Parse(SID), Doctor_Doc_ID = int.Parse(DID), Interact_des = "connection"  , Report= "dferwgwethteh"});
+            db.SaveChanges();
+            return RedirectToAction("Doctors" ,SID);
+        }
+
+        [HttpGet]
+        public ActionResult Cdoc(int Id) {
+
+           var docuser= db.Users.Single(u => u.User_ID == Id).User_Doctor.ToList();
+            List<Doctor> doctors = new List<Doctor>();
+            for (int i = 0; i < docuser.Count; i++)
+            {
+
+                doctors.Add(docuser[i].Doctor);
+            }
+            return View("CDoctors", doctors);
+        }
+        #endregion
         #region Delete
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
@@ -213,7 +291,12 @@ namespace HealthCareSite.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
+        [HttpGet]
+        public ActionResult Drug() { return View(db.Drugs.ToList()); }
+        [HttpGet]
+        public ActionResult Food() { return View(db.Foods.ToList()); }
+        [HttpGet]
+        public ActionResult Excercise() { return View(db.Exercises.ToList()); }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -222,5 +305,7 @@ namespace HealthCareSite.Controllers
             }
             base.Dispose(disposing);
         }
+     
     }
+
 }

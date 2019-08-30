@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\CISISDEPARTMENT\3RD_IS_sterm\Projects\HealthCare\HealthCareSite\HealthCareSite\HCDB.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\CISISDEPARTMENT\3RD_IS_sterm\Projects\HealthCare\HealthCareSite\HealthCareSite\Models\healthcaresite.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

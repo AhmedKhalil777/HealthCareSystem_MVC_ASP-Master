@@ -1,27 +1,28 @@
-﻿@model HealthCareSite.Models.User
+﻿@model HealthCareSite.Models.Doctor
 
 @{
-    ViewBag.Title = "Chat";
-     Layout = "~/Views/Shared/_UserMaster.cshtml";
+    ViewBag.Title = "chat";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
+
 @{string x = Html.DisplayFor(model => model.Pic).ToString();}
 
 <h2 id="name" class="align-content-sm-around">
-    
+
     @Html.DisplayFor(model => model.Name))
-   
+
 </h2>
-<h2 id="pic" hidden="hidden" >
+<h2 id="pic" hidden="hidden">
     @Html.DisplayFor(model => model.Pic).ToString()
 </h2>
-<img src="     @Html.DisplayFor(model => model.Pic).ToString()" class="img-circle img-responsive " style="width:30%"  />
+<img src="     @Html.DisplayFor(model => model.Pic).ToString()" class="img-circle img-responsive " style="width:30%" />
 
 <div class="chat-panel panel panel-default">
     <div class="panel-heading">
         SignalR Chatting Created By AhmedKhalil
         <i class="fa fa-paper-plane fa-fw "></i>
     </div>
-    <div  class="container pre-scrollable panel-body" id="chat" style="height:500px;background-size:cover ; background-image:url(../../Uploads/83892_original_3264x2448.jpg)">
+    <div class="container pre-scrollable panel-body" id="chat" style="height:500px;background-size:cover ; background-image:url(../../Uploads/83892_original_3264x2448.jpg)">
         <input type="hidden" id="displayname" />
         <p id="discussion"></p>
     </div>
@@ -47,7 +48,7 @@
             chat.client.addNewMessageToPage = function (name, message ,pic) {
                 // Add the message to the page.
                 if ($('#displayname').val() == name) {
-                    $('#discussion').append( '<div class="btn btn-info" style=" text-align :right;"><img src=@Html.DisplayFor(model => model.Pic).ToString()  style="width:60px;height:60px; border-radius:30px 30px">' +'<span style="font-size:25px" > ' 
+                    $('#discussion').append( '<div class="btn btn-info" style=" text-align :right;"><img src=@Html.DisplayFor(model => model.Pic).ToString()  style="width:60px;height:60px; border-radius:30px 30px">' +'<span style="font-size:25px" > '
                       + htmlEncode(message) + ' </span></div></br>');
                 }
                 else {

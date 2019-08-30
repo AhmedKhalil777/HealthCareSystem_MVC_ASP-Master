@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HealthCareSite.Models.User>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+
+    <section id="team" class="pb-5">
+
+
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p>
+                                                <img class=" img-fluid" src="@item.Pic" alt="card image">
+                                            </p>
+                                            <h4 class="card-title">@item.Name</h4>
+                                            <p class="card-text">@item.Description</p>
+                                            @Html.ActionLink("Details", "Details", "Doctors", new { id = item.User_ID }, new { @class = "btn btn-info " })
+                                            @Html.ActionLink("chat", "chat", "Doctors", new { id = Request.Cookies["DID"].Value }, new { @class = "btn btn-warning" })
+                                            <br />
+                                            @Html.ActionLink("Food", "Food", "Doctors", new { id = item.User_ID }, new{ @class = "btn btn-dark" } )
+                                            @Html.ActionLink("Drugs", "Drug", "Doctors", new { id = item.User_ID },new { @class = "btn btn-dark" } )
+                                            @Html.ActionLink("Excersices", "Excercise", "Doctors", new { id = item.User_ID },new { @class = "btn btn-dark" } )
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </section>

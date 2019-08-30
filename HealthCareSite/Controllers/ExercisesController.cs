@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -10,107 +9,107 @@ using HealthCareSite.Models;
 
 namespace HealthCareSite.Controllers
 {
-    public class DrugsController : Controller
+    public class ExercisesController : Controller
     {
-        private health_care_systemEntities db = new health_care_systemEntities();
+        private health_care_systemEntities1 db = new health_care_systemEntities1();
 
-        // GET: Drugs
+        // GET: Exercises
         public ActionResult Index()
         {
-            return View(db.Drugs.ToList());
+            return View(db.Exercises.ToList());
         }
 
-        // GET: Drugs/Details/5
+        // GET: Exercises/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drug drug = db.Drugs.Find(id);
-            if (drug == null)
+            Exercise exercise = db.Exercises.Find(id);
+            if (exercise == null)
             {
                 return HttpNotFound();
             }
-            return View(drug);
+            return View(exercise);
         }
 
-        // GET: Drugs/Create
+        // GET: Exercises/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Drugs/Create
+        // POST: Exercises/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Drug_ID,Name,Weight,Side_effect,Medical_u,Ingredient")] Drug drug)
+        public ActionResult Create([Bind(Include = "Ex_ID,Name,Media,Body_matching,Type,Repeat")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
-                db.Drugs.Add(drug);
+                db.Exercises.Add(exercise);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(drug);
+            return View(exercise);
         }
 
-        // GET: Drugs/Edit/5
+        // GET: Exercises/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drug drug = db.Drugs.Find(id);
-            if (drug == null)
+            Exercise exercise = db.Exercises.Find(id);
+            if (exercise == null)
             {
                 return HttpNotFound();
             }
-            return View(drug);
+            return View(exercise);
         }
 
-        // POST: Drugs/Edit/5
+        // POST: Exercises/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Drug_ID,Name,Weight,Side_effect,Medical_u,Ingredient")] Drug drug)
+        public ActionResult Edit([Bind(Include = "Ex_ID,Name,Media,Body_matching,Type,Repeat")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(drug).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(exercise).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(drug);
+            return View(exercise);
         }
 
-        // GET: Drugs/Delete/5
+        // GET: Exercises/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Drug drug = db.Drugs.Find(id);
-            if (drug == null)
+            Exercise exercise = db.Exercises.Find(id);
+            if (exercise == null)
             {
                 return HttpNotFound();
             }
-            return View(drug);
+            return View(exercise);
         }
 
-        // POST: Drugs/Delete/5
+        // POST: Exercises/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Drug drug = db.Drugs.Find(id);
-            db.Drugs.Remove(drug);
+            Exercise exercise = db.Exercises.Find(id);
+            db.Exercises.Remove(exercise);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<HealthCareSite.Models.Drug>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Drug";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Drug</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create","Drugs" , null,new { @class = "btn btn-success"})
 </p>
 <table class="table">
     <tr>
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.Ingredient)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Drug_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Drug_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Drug_ID })
+            @Html.ActionLink("Edit", "Edit","Drugs", new { id=item.Drug_ID } , new {@class = "btn btn-warning"}) |
+            @Html.ActionLink("Details", "Details","Drugs", new { id=item.Drug_ID }, new {@class = "btn btn-info"}) |
+            @Html.ActionLink("Delete", "Delete","Drugs", new { id=item.Drug_ID }, new {@class = "btn btn-danger"})
         </td>
     </tr>
 }

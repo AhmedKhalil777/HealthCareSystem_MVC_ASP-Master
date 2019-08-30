@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,7 +12,7 @@ namespace HealthCareSite.Controllers
 {
     public class FoodsController : Controller
     {
-        private health_care_systemEntities db = new health_care_systemEntities();
+        private health_care_systemEntities1 db = new health_care_systemEntities1();
 
         // GET: Foods
         public ActionResult Index()
@@ -82,7 +82,7 @@ namespace HealthCareSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(food).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(food).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

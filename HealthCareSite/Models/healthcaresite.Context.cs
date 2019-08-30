@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HealthCareSite
+namespace HealthCareSite.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class health_care_systemEntities : DbContext
+    public partial class health_care_systemEntities1 : DbContext
     {
-        public health_care_systemEntities()
-            : base("name=health_care_systemEntities")
+        public health_care_systemEntities1()
+            : base("name=health_care_systemEntities1")
         {
         }
     

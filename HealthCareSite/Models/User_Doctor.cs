@@ -14,7 +14,6 @@ namespace HealthCareSite.Models
     
     public partial class User_Doctor
     {
-        public int User_Doctor_ID { get; set; }
         public string Interact_des { get; set; }
         public int User_User_ID { get; set; }
         public int Doctor_Doc_ID { get; set; }

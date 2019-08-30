@@ -12,7 +12,7 @@ namespace HealthCareSite.Controllers
 {
     public class GroupsController : Controller
     {
-        private health_care_systemEntities db = new health_care_systemEntities();
+        private health_care_systemEntities1 db = new health_care_systemEntities1();
 
         // GET: Groups
         public ActionResult Index()
